@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>YUFIT-AYZ | Portfólio & Loja</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ==================== VARIÁVEIS & RESET ==================== */
+        :root {
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8FAFC;
+            --text-main: #0F172A;
+            --text-muted: #64748B;
+            --accent-blue: #2563EB;
+            --accent-blue-hover: #1D4ED8;
+            --border-color: #E2E8F0;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+
+        /* ==================== HEADER & NAVBAR ==================== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .logo span {
+            color: var(--accent-blue);
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-blue);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-blue);
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.4rem;
+            cursor: pointer;
+            color: var(--text-main);
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: var(--bg-secondary);
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .menu-toggle:active {
+            background: #E2E8F0;
+        }
+
+        /* ==================== SISTEMA DE ABAS (TABS) ==================== */
+        .tab-pane {
+            display: none;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+            padding-top: 70px;
+            min-height: calc(100vh - 120px);
+        }
+
+        .tab-pane.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==================== PÁGINA HOME ==================== */
+        .hero {
+            padding: 3.5rem 0 3rem;
+            background: linear-gradient(135deg, #EFF6FF 0%, #FFFFFF 100%);
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #DBEAFE;
+            color: var(--accent-blue);
+            padding: 0.4rem 0.9rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .hero-text h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 1.2rem;
+            color: var(--text-main);
+        }
+
+        .highlight {
+            color: var(--accent-blue);
+        }
+
+        .hero-text p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.85rem 1.6rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-blue);
+            color: white;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+        }
+
+        .btn-primary:active {
+            background-color: var(--accent-blue-hover);
+            transform: scale(0.98);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--text-main);
+            color: var(--text-main);
+        }
+
+        .btn-outline:active {
+            background: var(--text-main);
+            color: white;
+            transform: scale(0.98);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            object-fit: cover;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            padding: 3rem 1.25rem;
+        }
+
+        .feature-card {
+            background: var(--bg-secondary);
+            padding: 1.8rem 1.25rem;
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .feature-card i {
+            font-size: 2.2rem;
+            color: var(--accent-blue);
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+        }
+
+        /* ==================== PÁGINA SOBRE ==================== */
+        .section-padding {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+
+        .section-title h2 span {
+            color: var(--accent-blue);
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        .about-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .about-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .stat-box h4 {
+            font-size: 1.8rem;
+            color: var(--accent-blue);
+            font-weight: 700;
+        }
+
+        .stat-box p {
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* ==================== PÁGINA PRODUTOS ==================== */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1.2rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active, .filter-btn:active {
+            background: var(--accent-blue);
+            color: white;
+            border-color: var(--accent-blue);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .product-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .product-img-wrapper {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+            background: var(--bg-secondary);
+        }
+
+        .product-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .product-tag {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--accent-blue);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .product-tag.discount {
+            background: #0F172A;
+        }
+
+        .product-info {
+            padding: 1.2rem;
+        }
+
+        .product-category {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .product-info h3 {
+            font-size: 1.05rem;
+            margin: 0.3rem 0 0.8rem;
+            font-weight: 600;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border-color);
+            padding-top: 0.8rem;
+        }
+
+        .price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+        }
+
+        .btn-buy {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 0.45rem 0.85rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .btn-buy:active {
+            background: var(--accent-blue);
+            color: white;
+            border-color: var(--accent-blue);
+        }
+
+        /* ==================== PÁGINA CONTATO ==================== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 2rem;
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-info-box h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .contact-info-box p {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .contact-info-box i {
+            color: var(--accent-blue);
+            font-size: 1.1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            width: 38px;
+            height: 38px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: var(--text-main);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:active {
+            background: var(--accent-blue);
+            color: white;
+            border-color: var(--accent-blue);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.85rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-primary);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        /* ==================== RODAPÉ ==================== */
+        .footer {
+            background: var(--text-main);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .footer-content p {
+            color: #94A3B8;
+            font-size: 0.85rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .footer-content strong {
+            color: white;
+        }
+
+        /* ==================== TOAST NOTIFICATION ==================== */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translate(-50%, 120px);
+            background: var(--text-main);
+            color: white;
+            padding: 0.85rem 1.25rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+            z-index: 2000;
+            border-left: 4px solid var(--accent-blue);
+            width: calc(100% - 40px);
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .toast.show {
+            transform: translate(-50%, 0);
+        }
+
+        /* ==================== RESPONSIVIDADE EXTREMA (MOBILE / TABLET) ==================== */
+        @media (max-width: 992px) {
+            .hero-container, .about-grid, .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 2rem 1.25rem;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            /* Menu Hambúrguer Deslizante */
+            .navbar {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(15px);
+                border-bottom: 1px solid var(--border-color);
+                box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+                overflow: hidden;
+                max-height: 0;
+                transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+            }
+
+            .navbar.active {
+                max-height: 320px;
+                transition: max-height 0.4s ease-in-out;
+            }
+
+            .navbar ul {
+                flex-direction: column;
+                align-items: center;
+                padding: 1.5rem 0;
+                gap: 1.2rem;
+            }
+
+            .nav-link {
+                font-size: 1.05rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding: 2rem 0;
+            }
+
+            .hero-text h1 {
+                font-size: 1.85rem;
+            }
+
+            .hero-text p {
+                font-size: 0.9rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr; /* 1 produto por linha em telas bem pequenas */
+            }
+
+            .product-img-wrapper {
+                height: 240px;
+            }
+
+            .contact-grid {
+                padding: 1.25rem;
+            }
+
+            .about-stats {
+                gap: 1.5rem;
+            }
+
+            .stat-box h4 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABEÇALHO / NAVBAR -->
+    <header class="header">
+        <div class="container nav-container">
+            <a class="logo" onclick="switchTab('home')">
+                YU<span>FIT</span>-AYZ
+            </a>
+            
+            <nav class="navbar" id="navbar">
+                <ul>
+                    <li><a href="#" class="nav-link active" data-tab="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-tab="sobre">Sobre</a></li>
+                    <li><a href="#" class="nav-link" data-tab="produtos">Produtos</a></li>
+                    <li><a href="#" class="nav-link" data-tab="contato">Contato</a></li>
+                </ul>
+            </nav>
+
+            <div class="menu-toggle" id="mobile-menu" aria-label="Abrir Menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL (ABAS) -->
+    <main class="main-content">
+
+        <!-- ==================== PÁGINA HOME ==================== -->
+        <section id="home" class="tab-pane active">
+            <div class="hero">
+                <div class="container hero-container">
+                    <div class="hero-text">
+                        <span class="badge">Nova Coleção Disponível</span>
+                        <h1>Estilo, Performance e <span class="highlight">Atitude</span></h1>
+                        <p>Descubra a identidade única da YUFIT-AYZ. Roupas e acessórios projetados para quem vive com intensidade, conforto e elegância em cada momento.</p>
+                        <div class="hero-buttons">
+                            <button class="btn btn-primary" onclick="switchTab('produtos')">Ver Produtos <i class="fas fa-arrow-right"></i></button>
+                            <button class="btn btn-outline" onclick="switchTab('sobre')">Sobre a Marca</button>
+                        </div>
+                    </div>
+                    <!-- FOTO DA MARCA / HERO -->
+                    <div class="hero-image">
+                        <img src="imagemdamarca.jpeg" alt="YUFIT-AYZ Destaque">
+                    </div>
+                </div>
+            </div>
+
+            <!-- DESTAQUES DA MARCA -->
+            <div class="features container">
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Qualidade Premium</h3>
+                    <p>Materiais de alta durabilidade e acabamento impecável.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-fire"></i>
+                    <h3>Tendência & Estilo</h3>
+                    <p>Design moderno alinhado com as últimas tendências globais.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h3>Entrega Rápida</h3>
+                    <p>Agilidade e segurança no envio direto para você.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PÁGINA SOBRE ==================== -->
+        <section id="sobre" class="tab-pane">
+            <div class="container section-padding">
+                <div class="section-title">
+                    <h2>Sobre a <span>YUFIT-AYZ</span></h2>
+                    <p>Conheça nossa essência e nossa jornada rumo à excelência.</p>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-image">
+                        <img src="imagemdamarca.jpeg" alt="Loja YUFIT-AYZ">
+                    </div>
+                    <div class="about-text">
+                        <h3>Nossa História e Missão</h3>
+                        <p>A <strong>YUFIT-AYZ</strong> nasceu da paixão por unir conforto, versatilidade e estilo inconfundível. Nosso compromisso é entregar peças que valorizam a individualidade de cada cliente, proporcionando confiança em qualquer ocasião.</p>
+                        <p>Trabalhamos incansavelmente para selecionar as melhores tendências, garantindo rigor no controle de qualidade e um atendimento de excelência.</p>
+                        
+                        <div class="about-stats">
+                            <div class="stat-box">
+                                <h4>+1000</h4>
+                                <p>Clientes Satisfeitos</p>
+                            </div>
+                            <div class="stat-box">
+                                <h4>100%</h4>
+                                <p>Garantia de Qualidade</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PÁGINA PRODUTOS ==================== -->
+        <section id="produtos" class="tab-pane">
+            <div class="container section-padding">
+                <div class="section-title">
+                    <h2>Nossos <span>Produtos</span></h2>
+                    <p>Explore nossa vitrine exclusiva e escolha suas peças favoritas.</p>
+                </div>
+
+                <!-- Filtros de Categoria -->
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="vestuario">Vestuário</button>
+                    <button class="filter-btn" data-filter="calcados">Calçados</button>
+                    <button class="filter-btn" data-filter="acessorios">Acessórios</button>
+                </div>
+
+                <!-- Grade de Produtos -->
+                <div class="products-grid" id="products-container">
+                    
+                    <!-- Produto 1 -->
+                    <div class="product-card" data-category="vestuario">
+                        <div class="product-img-wrapper">
+                            <img src="azulclacomgola4.jpeg" alt="Camiseta polo YUFIT">
+                            <span class="product-tag">Novo</span>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Vestuário</span>
+                            <h3>Camiseta Oversized YUFIT</h3>
+                            <div class="product-footer">
+                                <span class="price">1.200MT</span>
+                                <button class="btn-buy" onclick="comprarProduto('Camiseta polo YUFIT')"><i class="fas fa-shopping-bag"></i> Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produto 2 -->
+                    <div class="product-card" data-category="calcados">
+                        <div class="product-img-wrapper">
+                            <img src="preta sem gola1.jpeg" alt="Drop 1 AYZ">
+                            <span class="product-tag discount">-15%</span>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">vestuario</span>
+                            <h3>Camiseta drop 1 AYZ</h3>
+                            <div class="product-footer">
+                                <span class="price">900 MT</span>
+                                <button class="btn-buy" onclick="comprarProduto('Drop 1')"><i class="fas fa-shopping-bag"></i> Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produto 3 -->
+                    <div class="product-card" data-category="acessorios">
+                        <div class="product-img-wrapper">
+                            <img src="branacomgola.jpeg" alt="Camiseta  AYZ">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Vestuário</span>
+                            <h3>Camiseta AYZ</h3>
+                            <div class="product-footer">
+                                <span class="price">950 MT</span>
+                                <button class="btn-buy" onclick="comprarProduto('CamisetaAYZ')"><i class="fas fa-shopping-bag"></i> Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produto 4 -->
+                    <div class="product-card" data-category="vestuario">
+                        <div class="product-img-wrapper">
+                            <img src="azulcomgolascu4.jpeg" alt="Polo style YUFIT">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Vestuário</span>
+                            <h3>Polo style YUFIT</h3>
+                            <div class="product-footer">
+                                <span class="price">1200 MT</span>
+                                <button class="btn-buy" onclick="comprarProduto('Polo style YUFIT')"><i class="fas fa-shopping-bag"></i> Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produto 5 -->
+                    <div class="product-card" data-category="acessorios">
+                        <div class="product-img-wrapper">
+                            <img src="drop1bra.jpeg" alt="Mochila Executiva AYZ">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Vestuario</span>
+                            <h3> camiseta AYZ</h3>
+                            <div class="product-footer">
+                                <span class="price">900 MT</span>
+                                <button class="btn-buy" onclick="comprarProduto('Vestuário')"><i class="fas fa-shopping-bag"></i> Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produto 6 -->
+                    <div class="product-card" data-category="calcados">
+                        <div class="product-img-wrapper">
+                            <img src="drop2fem (1).jpeg" alt="Chinelo Confort YUFIT">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Calçados</span>
+                            <h3>Camisa femenina YUFIT</h3>
+                            <div class="product-footer">
+                                <span class="price">950 MT</span>
+                                <button class="btn-buy" onclick="comprarProduto('Camisa femenina YUFIT')"><i class="fas fa-shopping-bag"></i> Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PÁGINA CONTATO ==================== -->
+        <section id="contato" class="tab-pane">
+            <div class="container section-padding">
+                <div class="section-title">
+                    <h2>Fale <span>Conosco</span></h2>
+                    <p>Entre em contato para dúvidas, encomendas ou parcerias.</p>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-info-box">
+                        <h3>Informações de Contato</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Santa Isabel, Moçambique</p>
+                        <p><i class="fas fa-phone-alt"></i> +258 86 36 30174</p>
+                        <p><i class="fas fa-envelope"></i> chissevesidonia@gmail.com</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+
+                    <form class="contact-form" onsubmit="enviarMensagem(event)">
+                        <div class="form-group">
+                            <input type="text" placeholder="Seu Nome" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Seu E-mail" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="4" placeholder="Sua Mensagem..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>&copy; 2026 <strong>YUFIT-AYZ</strong>. Todos os direitos reservados.</p>
+            <p>Design moderno em Branco & Azul</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Container -->
+    <div id="toast" class="toast">Produto adicionado ao carrinho com sucesso!</div>
+
+    <!-- SCRIPT JAVASCRIPT INTEGRADO -->
+    <script>
+        // ==================== NAVEGAÇÃO ENTRE ABAS (TABS) ====================
+        const navLinks = document.querySelectorAll('.nav-link');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+        const mobileMenuBtn = document.getElementById('mobile-menu');
+        const navbar = document.getElementById('navbar');
+
+        function switchTab(tabId) {
+            navLinks.forEach(link => link.classList.remove('active'));
+            tabPanes.forEach(pane => pane.classList.remove('active'));
+
+            const targetLink = document.querySelector(`.nav-link[data-tab="${tabId}"]`);
+            if (targetLink) {
+                targetLink.classList.add('active');
+            }
+
+            const targetPane = document.getElementById(tabId);
+            if (targetPane) {
+                targetPane.classList.add('active');
+            }
+
+            // Fecha o menu mobile suavemente ao clicar em um link
+            if (navbar.classList.contains('active')) {
+                navbar.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const tabId = link.getAttribute('data-tab');
+                switchTab(tabId);
+            });
+        });
+
+        // ==================== MENU HAMBÚRGUER (RESPONSIVIDADE) ====================
+        mobileMenuBtn.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+            if (navbar.classList.contains('active')) {
+                mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
+            } else {
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+
+        // ==================== FILTRO DE PRODUTOS ====================
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const productCards = document.querySelectorAll('.product-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const filterValue = button.getAttribute('data-filter');
+
+                productCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    if (filterValue === 'all' || category === filterValue) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'scale(1)';
+                        }, 50);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'scale(0.85)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // ==================== SISTEMA DE COMPRA / TOAST ====================
+        function comprarProduto(nomeProduto) {
+            showToast(`"${nomeProduto}" adicionado ao carrinho!`);
+        }
+
+        function enviarMensagem(e) {
+            e.preventDefault();
+            showToast('Mensagem enviada com sucesso!');
+            e.target.reset();
+        }
+
+        let toastTimeout;
+        function showToast(mensagem) {
+            const toast = document.getElementById('toast');
+            toast.textContent = mensagem;
+            toast.classList.add('show');
+
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
